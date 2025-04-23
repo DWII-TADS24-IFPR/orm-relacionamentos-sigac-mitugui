@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('documentos', function (Blueprint $table) {
+        Schema::create('comprovantes', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->string('descricao');
-            $table->float('horas_in');
-            $table->string('status');
-            $table->string('comentario');
-            $table->float('horas_out');
-            
+            $table->float('horas');
+            $table->string('atividade');
+
+            $table->foreignId('aluno_id')->constrained()->onDelete('cascade');
+            $table->foreignId('categoria_id')->constrained()->onDelete('cascade');
 
             $table->softDeletes();
 
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('documentos');
+        Schema::dropIfExists('comprovantes');
     }
 };

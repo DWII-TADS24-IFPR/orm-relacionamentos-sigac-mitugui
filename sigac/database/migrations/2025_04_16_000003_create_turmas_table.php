@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('declaracoes', function (Blueprint $table) {
+        Schema::create('turmas', function (Blueprint $table) {
             $table->id();
-            $table->string('hash');
-            $table->dateTime('data');
+            $table->integer('ano');
+
+            $table->foreignId('curso_id')->constrained()->onDelete('cascade');
 
             $table->softDeletes();
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('declaracoes');
+        Schema::dropIfExists('turmas');
     }
 };
