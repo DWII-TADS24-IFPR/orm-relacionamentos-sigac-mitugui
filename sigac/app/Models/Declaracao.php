@@ -10,5 +10,13 @@ class Declaracao extends Model
     use HasFactory;
 
     protected $table = 'declaracoes';
-    protected $fillable = ['hash', 'data'];
+    protected $fillable = ['hash', 'data', 'aluno_id', 'comprovante_id'];
+
+    public function aluno() {
+        return $this->belongsTo(Aluno::class);
+    }
+
+    public function comprovante() {
+        return $this->belongsTo(Comprovante::class);
+    }    
 }
